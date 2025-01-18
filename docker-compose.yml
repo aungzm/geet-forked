@@ -1,0 +1,37 @@
+services:
+  app:
+    image: ghcr.io/csc301-2024-f/project-11-geet:latest  # Pull the image from GHCR
+    container_name: geet-app
+    ports:
+      - "5000:5000"  
+    dns:
+      - 8.8.8.8  # Use Google's DNS because there were issues before this with dns
+    environment:
+      # Postgres
+      PG_USER: ${PG_USER}
+      PG_PASSWORD: ${PG_PASSWORD}
+      PG_HOST: ${PG_HOST}
+      PG_PORT: ${PG_PORT}
+      PG_DATABASE: ${PG_DATABASE}
+      PG_SSL: ${PG_SSL}
+      
+      # AWS S3 Bucket
+      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+      AWS_REGION: ${AWS_REGION}
+      S3_ENDPOINT: ${ENDPOINT_URL}
+      S3_BUCKET_NAME: ${S3_BUCKET_NAME}
+
+      # JWT Secret
+      JWT_SECRET: ${JWT_SECRET}
+
+  # watchtower:  #For automated builds
+  #   image: containrrr/watchtower:latest
+  #   container_name: watchtower
+  #   volumes:
+  #     - /var/run/docker.sock:/var/run/docker.sock  
+  #     - /home/{$user}/.docker/config.json:/config/.docker/config.json  # For private registries (do docker login first)
+  #   environment:
+  #     - WATCHTOWER_CLEANUP=true  # Remove old images
+  #     - WATCHTOWER_POLL_INTERVAL=300  # Check every 5 minutes (adjustable)
+  #   restart: always
