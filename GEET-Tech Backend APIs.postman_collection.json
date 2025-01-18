@@ -1,0 +1,1707 @@
+{
+	"info": {
+		"_postman_id": "01fad982-a101-4a7e-856c-e364aa74a907",
+		"name": "GEET-Tech Backend APIs",
+		"description": "StartFragment**GEET-Tech Backend APIs** are designed to power a Student Mentor platform aimed at providing academic and life coaching for rural girls in India. These APIs handle core functionalities such as user authentication, mentor-student pairings, certification management, and role-based access controls. Built using Express.js and PostgreSQL, the backend supports secure data handling, file storage through S3 for certifications, and multi-role access for students, mentors, and admins.EndFragment",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "39139144"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Signup",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"Jane\",\r\n    \"lastName\": \"Dee\",\r\n    \"loginID\": \"john@example.com\",\r\n    \"password\": \"securePassword123\",\r\n    \"dob\": \"2005-07-20\",\r\n    \"address\": \"123 Main St\",\r\n    \"city\": \"New Delhi\",\r\n    \"state\": \"Delhi\",\r\n    \"country\": \"India\",\r\n    \"zip\": \"110001\",\r\n    \"role\": \"student\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/auth/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"loginID\": \"janedoe@example.com\",\r\n    \"password\": \"securePassword123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Refresh Token",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"loginID\": \"2\",\r\n    \"refreshToken\": \"Your-given-refresh-token\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/auth/token/refresh",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"auth",
+								"token",
+								"refresh"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Refresh Token",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"refreshToken\": \"Your-given-refresh-token\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/auth/token/refresh",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"auth",
+								"token",
+								"refresh"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "This folder is mostly about user authentication like login, signup"
+		},
+		{
+			"name": "User Management APIs",
+			"item": [
+				{
+					"name": "Get Some User Info by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/users/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"users",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User Password",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"currentPassword\": \"oldPassword123\",\r\n    \"newPassword\": \"newSecurePassword456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/users/:id/password",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"users",
+								":id",
+								"password"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Admin APIs",
+			"item": [
+				{
+					"name": "Get All User Details by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/users/:id/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"users",
+								":id",
+								"all"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Promote Users",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"newRole\": \"mentor\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/users/:id/role",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"users",
+								":id",
+								"role"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User by ID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/users/:id/delete",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"users",
+								":id",
+								"delete"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/users/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"users",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Mentors for a Student",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/student/:studentId/mentors",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"student",
+								":studentId",
+								"mentors"
+							],
+							"variable": [
+								{
+									"key": "studentId",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Students for a Mentor",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/mentor/:mentorId/students",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"mentor",
+								":mentorId",
+								"students"
+							],
+							"variable": [
+								{
+									"key": "mentorId",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pair A Student and A Mentor",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"mentorId\": \"98765\",\r\n    \"studentId\": \"12345\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/pairs",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"pairs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove a Mentor-Student Pairing",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"mentorId\": \"98765\",\r\n    \"studentId\": \"12345\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/pairs/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"pairs",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "All admin funcitonalities like deleting users, promoting users, etc."
+		},
+		{
+			"name": "Mentor APIs",
+			"item": [
+				{
+					"name": "Validate Certificate B4 Uploading",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"fileName\": \"certificate.pdf\",\r\n    \"thumbnailName\": \"thumbnail.png\",\r\n    \"fileSize\": 7340032, // 7MB in bytes\r\n    \"fileType\": \"application/pdf\",\r\n    \"thumbnailType\": \"image/png\",\r\n    \"thumbnailSize\": 1048576 // 1MB in bytes\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/mentors/:id/certifications/presigned-urls",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"mentors",
+								":id",
+								"certifications",
+								"presigned-urls"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						},
+						"description": "This request simply validates if User has the appropriate role and also ensures the file size is within limit and file type is pdf before sending back presigned urls for uploading"
+					},
+					"response": []
+				},
+				{
+					"name": "Upload Validated Certificate",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "certificate",
+									"description": "Your certificate to upload",
+									"type": "file",
+									"src": []
+								},
+								{
+									"key": "thumbnail",
+									"description": "Thumbnail of said certificate",
+									"type": "file",
+									"src": []
+								},
+								{
+									"key": "presignedFileUrl",
+									"value": "https://s3.amazonaws.com/yourbucket/certificate.pdf",
+									"description": "Presigned URL to upload file",
+									"type": "text"
+								},
+								{
+									"key": "presignedThumbnailUrl",
+									"value": "\"https://s3.amazonaws.com/yourbucket/thumbnail.png",
+									"description": "Presigned URL to upload thumbnail",
+									"type": "text"
+								},
+								{
+									"key": "fileStorageUrl",
+									"value": "https://s3.amazonaws.com/yourbucket/certificate.pdf",
+									"description": "Where certificate is stored in s3",
+									"type": "text"
+								},
+								{
+									"key": "fileThumbnailStorageUrl",
+									"value": "https://s3.amazonaws.com/yourbucket/certificate_thumbnail.pdf",
+									"description": "Where thumbnail is stored in s3",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/mentors/:id/certifications",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"mentors",
+								":id",
+								"certifications"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Certificate",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"certificateName\": \"certificate.pdf\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/mentors/:id/certifications",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"mentors",
+								":id",
+								"certifications"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						},
+						"description": "Delete existing mentor certification"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Mentor Certifications",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/mentors/40/certifications",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"mentors",
+								"40",
+								"certifications"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Here we have mentor actions such as Adding Certificate, Removing certificate, etc."
+		},
+		{
+			"name": "Course APIs",
+			"item": [
+				{
+					"name": "Create Courses",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"ownerId\": 56,\r\n  \"courseName\": \"Biology Essentials\",\r\n  \"description\": \"A foundational course in biology, covering cells, genetics, and ecosystems.\",\r\n  \"category\": \"Biology\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/courses",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"courses"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Courses by  User Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/users/56/courses",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"users",
+								"56",
+								"courses"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All existing Courses",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/courses/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"courses",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Enroll someone to a Course",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"userId\": \"22\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/courses/15/enroll",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"courses",
+								"15",
+								"enroll"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Unenroll someone from a Course",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"userId\" : \"22\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/courses/15/unenroll",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"courses",
+								"15",
+								"unenroll"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a course",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"teacherId\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/courses/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"courses",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Students From a Course",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/courses/15/students",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"courses",
+								"15",
+								"students"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Validate Course Documents",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"fileName\": \"project-report.pdf\",\r\n    \"fileType\": \"application/pdf\",\r\n    \"fileSize\": 7340032,\r\n    \"previewName\": \"project-preview.png\",\r\n    \"previewType\": \"image/png\",\r\n    \"previewSize\": 1048576\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/courses/11/documents/presigned-urls",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"courses",
+								"11",
+								"documents",
+								"presigned-urls"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Upload Course Documents",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "presignedDocumentUrl",
+									"value": "https://samyhynwigljedsonhqi.supabase.co/storage/v1/s3/Geet/courseDocuments/11/project-report.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=90b257bdea6daa79e859aed4a9793a8c%2F20241114%2Fca-central-1%2Fs3%2Faws4_request&X-Amz-Date=20241114T205524Z&X-Amz-Expires=3600&X-Amz-Signature=5fa2e0052d5ac7d40c1dd367725ec774eccd3e4835f68b9e64f774b40240e7a5&X-Amz-SignedHeaders=host&x-id=PutObject",
+									"type": "text"
+								},
+								{
+									"key": "presignedPreviewUrl",
+									"value": "https://samyhynwigljedsonhqi.supabase.co/storage/v1/s3/Geet/courseDocuments/11/project-preview.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=90b257bdea6daa79e859aed4a9793a8c%2F20241114%2Fca-central-1%2Fs3%2Faws4_request&X-Amz-Date=20241114T205524Z&X-Amz-Expires=3600&X-Amz-Signature=7a3ed9cb98f10cc475ea8fa03ca0931b7b397c319ea1712dabd3acc8b703b2f1&X-Amz-SignedHeaders=host&x-id=PutObject",
+									"type": "text"
+								},
+								{
+									"key": "documentStorageUrl",
+									"value": "courseDocuments/11/project-report.pdf",
+									"type": "text"
+								},
+								{
+									"key": "previewStorageUrl",
+									"value": "courseDocuments/11/project-preview.png",
+									"type": "text"
+								},
+								{
+									"key": "document",
+									"type": "file",
+									"src": "/D:/repos/project-report.pdf"
+								},
+								{
+									"key": "preview",
+									"type": "file",
+									"src": "/D:/repos/project-reports.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/courses/11/documents",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"courses",
+								"11",
+								"documents"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Course Documents Preview",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/courses/11/documents/preview",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"courses",
+								"11",
+								"documents",
+								"preview"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a Course Document",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"documentName\": \"project-report.pdf\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/courses/2/documents",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"courses",
+								"2",
+								"documents"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Download a Course Document",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/courses/11/documents?documentId=2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"courses",
+								"11",
+								"documents"
+							],
+							"query": [
+								{
+									"key": "documentId",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "For CRUD and Enrolling, Unerolling, document upload etc"
+		},
+		{
+			"name": "Post APIs",
+			"item": [
+				{
+					"name": "Create a Post",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"userId\": 1,\r\n  \"courseId\": 3,\r\n  \"content\": \"This is the content of the post.\",\r\n  \"title\": \"Sample title\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/posts",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"posts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update a Post",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"content\": \"Updated post content.\",\r\n    \"title\": \"Upated title\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/posts/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"posts",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a Post",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/posts/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"posts",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Validate Document to Upload",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"fileName\": \"project-reports.pdf\",\r\n  \"fileType\": \"application/pdf\",\r\n  \"fileSize\": 102400,\r\n  \"previewName\": \"project-reports.jpg\",\r\n  \"previewType\": \"image/jpeg\",\r\n  \"previewSize\": 10240\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/posts/1/documents/presigned-urls",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"posts",
+								"1",
+								"documents",
+								"presigned-urls"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Upload a document to  a Post",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "document",
+									"type": "file",
+									"src": "/D:/repos/project-report.pdf"
+								},
+								{
+									"key": "preview",
+									"type": "file",
+									"src": "/D:/repos/project-report.png"
+								},
+								{
+									"key": "presignedDocumentUrl",
+									"value": "https://samyhynwigljedsonhqi.supabase.co/storage/v1/s3/Geet/postDocuments/1/document.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=90b257bdea6daa79e859aed4a9793a8c%2F20241111%2Fca-central-1%2Fs3%2Faws4_request&X-Amz-Date=20241111T004702Z&X-Amz-Expires=3600&X-Amz-Signature=f38abb517c25b7a1a21c22689ca85dc579eff22e16a64833542ca84846ed3df6&X-Amz-SignedHeaders=host&x-id=PutObject",
+									"type": "text"
+								},
+								{
+									"key": "presignedPreviewUrl",
+									"value": "https://samyhynwigljedsonhqi.supabase.co/storage/v1/s3/Geet/postDocuments/1/preview.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=90b257bdea6daa79e859aed4a9793a8c%2F20241111%2Fca-central-1%2Fs3%2Faws4_request&X-Amz-Date=20241111T004702Z&X-Amz-Expires=3600&X-Amz-Signature=6684f38102d3a697050a8ad4bb49cd2a8cf79dbd83d6ecb882c8240737e2354c&X-Amz-SignedHeaders=host&x-id=PutObject",
+									"type": "text"
+								},
+								{
+									"key": "documentStorageUrl",
+									"value": "postDocuments/1/document.pdf",
+									"type": "text"
+								},
+								{
+									"key": "previewStorageUrl",
+									"value": "postDocuments/1/preview.jpg",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/posts/1/documents",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"posts",
+								"1",
+								"documents"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update existing document to  a Post",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "document",
+									"type": "file",
+									"src": "/D:/repos/project-reports.pdf"
+								},
+								{
+									"key": "preview",
+									"type": "file",
+									"src": "/D:/repos/project-reports.png"
+								},
+								{
+									"key": "presignedDocumentUrl",
+									"value": "https://samyhynwigljedsonhqi.supabase.co/storage/v1/s3/Geet/postDocuments/1/project-reports.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=90b257bdea6daa79e859aed4a9793a8c%2F20241111%2Fca-central-1%2Fs3%2Faws4_request&X-Amz-Date=20241111T005550Z&X-Amz-Expires=3600&X-Amz-Signature=e2495ccecaf1205855e2a6a6f7359f0b7e6fef8e10e9360ee43bcdc165b41e81&X-Amz-SignedHeaders=host&x-id=PutObject",
+									"type": "text"
+								},
+								{
+									"key": "presignedPreviewUrl",
+									"value": "https://samyhynwigljedsonhqi.supabase.co/storage/v1/s3/Geet/postDocuments/1/project-reports.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=90b257bdea6daa79e859aed4a9793a8c%2F20241111%2Fca-central-1%2Fs3%2Faws4_request&X-Amz-Date=20241111T005550Z&X-Amz-Expires=3600&X-Amz-Signature=c70d3290b9b2c14c6c063ca92b911de85c4b62df954d7c2bdddaf554e261f0b1&X-Amz-SignedHeaders=host&x-id=PutObject",
+									"type": "text"
+								},
+								{
+									"key": "documentStorageUrl",
+									"value": "postDocuments/1/project-reports.pdf",
+									"type": "text"
+								},
+								{
+									"key": "previewStorageUrl",
+									"value": "postDocuments/1/project-reports.png",
+									"type": "text"
+								},
+								{
+									"key": "documentId",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/posts/1/documents",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"posts",
+								"1",
+								"documents"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a post Document",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"documentId\": 1,\r\n    \"documentName\": \"project-reports.pdf\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/posts/1/documents",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"posts",
+								"1",
+								"documents"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Latest Posts",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/posts?courseId=3&limit=5&page=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"posts"
+							],
+							"query": [
+								{
+									"key": "courseId",
+									"value": "3"
+								},
+								{
+									"key": "limit",
+									"value": "5"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve Pre-signed Document URL by Document ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/posts/:postId/documents?documentId=#",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"posts",
+								":postId",
+								"documents"
+							],
+							"query": [
+								{
+									"key": "documentId",
+									"value": ""
+								}
+							],
+							"hash": "",
+							"variable": [
+								{
+									"key": "postId",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Comment APIs",
+			"item": [
+				{
+					"name": "Create a Comment",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"postId\": 1,\r\n  \"userId\": 1,\r\n  \"content\": \"This is a test comment.\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/comments/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"comments",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Comment",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"content\": \"This is the updated comment content.\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/comments/1/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"comments",
+								"1",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a Comment",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/comments/1/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"comments",
+								"1",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Comments from a Post",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/comments?postId=1&limit=10&page=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"comments"
+							],
+							"query": [
+								{
+									"key": "postId",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Admin APIs",
+			"item": [
+				{
+					"name": "Get All Users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/admin/users/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"users",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Users from a Role",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"role\": \"teacher\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/admin/users/role",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"users",
+								"role"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a Specific User",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"loginID\": \"azmm@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/admin/user",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update a User info",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"firstName\": \"John\",\r\n  \"lastName\": \"Doe\",\r\n  \"loginID\": \"johndoe@example.com\",\r\n  \"password\": \"securepassword123\",\r\n  \"dob\": \"1990-05-25\",\r\n  \"address\": \"123 Main Street\",\r\n  \"city\": \"New York\",\r\n  \"state\": \"NY\",\r\n  \"country\": \"USA\",\r\n  \"zip\": \"10001\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/admin/user",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"user"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Notification APIs",
+			"item": [
+				{
+					"name": "Get Notifications for a User",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/notifications/?userId=1&limit=5&page=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"notifications",
+								""
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "5"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Read Notification for a User",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/notifications/1/read",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"notifications",
+								"1",
+								"read"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Notifications for a User",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/notifications/1/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"notifications",
+								"1",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Save Notification Token",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Insert Notifications",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
