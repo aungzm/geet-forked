@@ -1,5 +1,9 @@
 # TEAM GEET
 
+
+https://github.com/user-attachments/assets/99edf768-0aef-43ad-a765-5e692bf38801
+
+
 ## Our Partner Organization
 
 GEET (**G**irls **E**mpowerment through **E**ducation and **T**ransformation) is a non-profit focused on providing accessible and quality education for rural high school girls in India.
