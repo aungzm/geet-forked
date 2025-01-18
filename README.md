@@ -49,8 +49,6 @@ All users are able to:
 If you have an Android phone, you can download the most recent export `.apk` of our app located in the link below.
 Simply open the Google drive on your **Android Phone**, download, and follow your operating systems prompts to install.
 
-**Google Drive**: https://drive.google.com/drive/folders/1o6_wXR_oO_390QKc3Mb6B6eV64A4bZ5L?usp=sharing
-
 If the APK doesn't work, you can view the following demo video that walks through the functionalities of our app.
 
 **Demo Video**: https://drive.google.com/drive/folders/1o6_wXR_oO_390QKc3Mb6B6eV64A4bZ5L
@@ -242,12 +240,12 @@ In the e-commerce app, the `ProductController` might:
 - **Scalability**: Easy to add or modify components without affecting the entire application.
 - **Maintainability**: Clear boundaries make debugging and updates simpler.
 
-  ![MVC Diagram](./deliverables/D1/images/mvc.png)
+  ![MVC Diagram](mvc.png)
 
 - **Modular Codebase:** The project is organized into clearly defined directories for components, assets, services, routes, utilities, and more.
   <br><br>
-  ![Frontend Organization](./deliverables/D5/images/frontend_organization.png)
-  ![Backend Organization](./deliverables/D5/images/backend_organization.png)
+  ![Frontend Organization](frontend_organization.png)
+  ![Backend Organization](backend_organization.png)
 - **Scalability:** The modular design makes the codebase easy to extend, allowing for future development without disrupting
 
 #### Aesthetic Elements of the UI
@@ -283,7 +281,7 @@ curl -X POST http://159.203.19.68:5000/api/auth/login
 ```
 
 3. Expected response: A `200 OK` status with a response confirming the service is running.
-4. Use the [postman collection](https://github.com/csc301-2024-f/project-11-geet/blob/main/GEET-Tech%20Backend%20APIs.postman_collection.json) given to import and test a myriad of apis
+4. Use the [postman collection](GEET-Tech%20Backend%20APIs.postman_collection.json) given to import and test a myriad of apis
 
 ## Maintaining the Project
 
@@ -312,9 +310,9 @@ To set up and run this application locally, you'll need the following tools and 
 
 We have created documentations for both the frontend and backend, detailing files, features implemented, and testing created and performed.
 
-**Frontend documentation**: https://github.com/csc301-2024-f/project-11-geet/tree/main/documentation/frontend_documentation.pdf
+**Frontend documentation**: [https://github.com/csc301-2024-f/project-11-geet/tree/main/documentation/frontend_documentation.pdf](https://github.com/aungzm/geet-forked/blob/main/frontend_documentation.pdf)
 
-**Backend documentation**: https://github.com/csc301-2024-f/project-11-geet/tree/main/documentation/backend_documentation.pdf
+**Backend documentation**: [https://github.com/csc301-2024-f/project-11-geet/tree/main/documentation/backend_documentation.pdf](https://github.com/aungzm/geet-forked/blob/main/backend_documentation.pdf)
 
 ## Licenses
 
